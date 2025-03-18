@@ -1,0 +1,290 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --base-font-size: 16px;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 217 70% 54%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 97%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 0 0% 97%;
+    --muted-foreground: 0 0% 42%;
+
+    --accent: 0 0% 94%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 84% 56%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 145 65% 43%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 42 89% 65%;
+    --warning-foreground: 0 0% 10%;
+
+    --highlight: 49 100% 81%;
+    --highlight-foreground: 0 0% 10%;
+
+    --border: 0 0% 92%;
+    --input: 0 0% 92%;
+    --ring: 217 70% 54%;
+
+    --radius: 0.25rem;
+
+    --sidebar-width: 240px;
+    --sidebar-collapsed-width: 72px;
+    --content-max-width: 900px;
+  }
+
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 18%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 18%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 217 70% 54%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 18%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 23%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 0 0% 23%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84% 56%;
+    --destructive-foreground: 0 0% 98%;
+
+    --success: 145 65% 43%;
+    --success-foreground: 0 0% 98%;
+
+    --warning: 42 89% 65%;
+    --warning-foreground: 0 0% 10%;
+
+    --highlight: 49 53% 29%;
+    --highlight-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 217 70% 54%;
+  }
+
+  /* Add utility classes for the appearance settings */
+  .reduce-motion * {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .reduce-border * {
+    border-width: 1px !important;
+    border-radius: 2px !important;
+  }
+
+  .high-contrast {
+    --foreground: 0 0% 0%;
+    --background: 0 0% 100%;
+    --muted-foreground: 0 0% 20%;
+    --primary: 217 90% 45%;
+    --destructive: 0 100% 45%;
+    --border: 0 0% 40%;
+  }
+
+  .dark.high-contrast {
+    --foreground: 0 0% 100%;
+    --background: 0 0% 0%;
+    --muted-foreground: 0 0% 80%;
+    --primary: 217 90% 65%;
+    --destructive: 0 100% 65%;
+    --border: 0 0% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-size: var(--base-font-size);
+  }
+  h1 {
+    @apply text-3xl font-semibold tracking-tight leading-tight;
+  }
+  h2 {
+    @apply text-2xl font-semibold tracking-tight leading-tight;
+  }
+  h3 {
+    @apply text-xl font-semibold tracking-tight leading-tight;
+  }
+  p {
+    @apply text-base leading-relaxed;
+  }
+}
+
+@layer components {
+  .sidebar-item {
+    @apply flex items-center gap-2 px-2 py-1 text-sm rounded-md text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors duration-200;
+  }
+
+  .sidebar-item.active {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  .block {
+    @apply my-2.5 px-3 py-1.5 rounded-sm hover:bg-accent/50 transition-colors duration-200 focus-within:bg-accent/50;
+  }
+
+  .block-menu {
+    @apply absolute left-0 -ml-10 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity duration-200;
+  }
+
+  .slash-menu {
+    @apply absolute z-50 bg-popover text-popover-foreground shadow-md rounded-md border border-border overflow-hidden w-60;
+  }
+
+  .slash-menu-item {
+    @apply flex items-center gap-2 px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground cursor-pointer;
+  }
+
+  .image-container {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    transition: transform 0.2s ease;
+  }
+
+  .image-container img {
+    display: block;
+    border-radius: 0.375rem;
+  }
+
+  .image-container.float-left {
+    float: left;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .image-container.float-right {
+    float: right;
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Clear floats after image blocks */
+  .block:has(.image-container.float-left),
+  .block:has(.image-container.float-right) {
+    clear: both;
+  }
+
+  /* Style for resize handle */
+  .resize-handle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background-color: hsl(var(--primary));
+    cursor: se-resize;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .image-container:hover .resize-handle {
+    opacity: 1;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Transitions */
+.page-transition {
+  transition: opacity 150ms ease-in-out;
+}
+
+.block-transition-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.block-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.block-transition-exit {
+  opacity: 1;
+}
+
+.block-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.sidebar-transition {
+  transition: width 250ms ease, transform 250ms ease;
+}
+
+.modal-transition-enter {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.modal-transition-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 250ms cubic-bezier(0.2, 0, 0, 1), transform 250ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.modal-transition-exit {
+  opacity: 1;
+}
+
+.modal-transition-exit-active {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 250ms cubic-bezier(0.2, 0, 0, 1), transform 250ms cubic-bezier(0.2, 0, 0, 1);
+}
+
