@@ -2,7 +2,8 @@
 
 Clarity is a modern, open-source note-taking and workspace application inspired by Notion. It provides a clean and intuitive interface for organizing your thoughts, notes, and projects.
 
-![Clarity Screenshot](https://via.placeholder.com/800x450.png?text=Clarity+Screenshot)
+![image](https://github.com/user-attachments/assets/ec883c73-b937-4acd-a233-e5aa52d02f5f)
+
 
 ## Features
 
